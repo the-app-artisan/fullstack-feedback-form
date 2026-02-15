@@ -1,8 +1,12 @@
 import type { Feedback } from '../types/feedback';
+import { prisma } from '../lib/prisma';
 
 class FeedbackService {
   async save(feedback: Feedback): Promise<void> {
-    console.log('Saving feedback', feedback);
+    // Save to database
+    await prisma.feedback.create({
+      data: feedback,
+    });
   }
 }
 
