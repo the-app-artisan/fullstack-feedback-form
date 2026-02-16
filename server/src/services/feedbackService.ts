@@ -7,6 +7,14 @@ class FeedbackService {
       data: feedback,
     });
   }
+
+  async getAll() {
+    return await prisma.feedback.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
 }
 
 export default new FeedbackService();

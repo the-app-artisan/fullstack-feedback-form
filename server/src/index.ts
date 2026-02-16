@@ -17,6 +17,10 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api/feedback', feedbackRoutes);
 
+app.use((req: Request, res: Response) => {
+  res.status(404).type('text').send('Not Found');
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import feedbackService from '../services/feedbackService';
 import { feedbackSchema } from '../validators/feedbackValidator';
+import { success } from 'zod';
 
 type FeedbackServiceType = typeof feedbackService;
 
@@ -27,6 +28,15 @@ class FeedbackController {
     res.status(201).json({
       success: true,
       message: 'Feedback submitted successfully',
+    });
+  }
+
+  async getAll(req: Request, res: Response) {
+    const feedbacks = await this.feedbackService.getAll();
+
+    res.status(200).json({
+      success: true,
+      data: feedbacks,
     });
   }
 }

@@ -8,4 +8,8 @@ router.post('/', (req: Request, res: Response) =>
   feedbackController.create(req, res),
 );
 
+router.get('/', (req: Request, res: Response) =>
+  feedbackController.getAll(req, res),
+);
+
 export default router;
