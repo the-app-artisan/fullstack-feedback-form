@@ -20,16 +20,21 @@ export default function useFeedbackForm() {
   const { notificationMessage, notificationType, showNotification } =
     useNotifications();
 
-  // Simulate form submission
-  // TODO: Replace with actual API call
+  // Submit the form
   const sendRequest = async () => {
-    // Wait for 1 sec
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const response = await fetch('/api/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form),
+    });
 
-    // Simulate error
-    // throw new Error('Simulated submission error');
+    if (!response.ok) {
+      throw new Error('Failed to submit feedback');
+    }
 
-    console.log('Form submitted with data:', form);
+    return await response.json();
   };
 
   const reset = () => {
